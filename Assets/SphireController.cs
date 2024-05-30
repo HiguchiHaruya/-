@@ -5,12 +5,17 @@ using UnityEngine;
 public class SphireController : MonoBehaviour
 {
     Rigidbody _rb;
+    bool isStop = false;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
     }
-    void Update()
+    private void FixedUpdate()
     {
-        _rb.velocity = new Vector3(0, 0, -3f);
+        if (!isStop) _rb.velocity = new Vector3(0, 0, 5f);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Goal")) isStop = true;
     }
 }
