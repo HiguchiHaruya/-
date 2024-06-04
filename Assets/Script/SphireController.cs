@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SphireController : MonoBehaviour
 {
+    float moveSpeed = 5.0f;
     Rigidbody _rb;
     bool isStop = false;
     void Start()
@@ -12,7 +13,8 @@ public class SphireController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!isStop) _rb.velocity = new Vector3(0, 0, 5f);
+        float h = Input.GetAxis("Horizontal");
+        if (!isStop) _rb.velocity = new Vector3(h * moveSpeed, 0, 7f);
     }
     private void OnCollisionEnter(Collision collision)
     {
